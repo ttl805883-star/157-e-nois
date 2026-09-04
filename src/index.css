@@ -1,0 +1,39 @@
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+}
+
+/* ------------------------------------------------------------------ */
+/* IMPRESSÃO — usado pelo botão "Imprimir" do painel de pedidos.        */
+/* Some com o resto da interface e mostra só o recibo marcado.         */
+/* ------------------------------------------------------------------ */
+.print-area { display: none; }
+
+@media print {
+  body * { visibility: hidden; }
+  .print-area, .print-area * { visibility: visible; }
+  .print-area {
+    display: block !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  .print-area, .print-area * {
+    break-inside: avoid;
+  }
+  @page {
+    margin: 14mm;
+  }
+}
+
+@media print and (orientation: landscape) {
+  @page { size: landscape; }
+}
